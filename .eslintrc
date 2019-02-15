@@ -5,6 +5,7 @@
     "airbnb"
   ],
   "plugins": [
+    "typescript",
     "@typescript-eslint",
     "react",
     "react-native"
@@ -50,7 +51,7 @@
     "indent": [0],
     "jsx-quotes": [1, "prefer-single"],
     "max-len": [2, {
-      "code": 120,
+      "code": 200,
       "ignorePattern": "import \\{?\\s?.*\\s?\\}? from '.*';"
     }],
     "no-undef": [0],
