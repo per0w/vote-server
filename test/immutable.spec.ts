@@ -17,7 +17,7 @@ describe('immutability', () => {
     });
   });
   describe('A List', () => {
-    const addMovie = (currentState: any[] | List<string>, movie: string) => currentState.push(movie);
+    const addMovie = (currentState: string[] | List<string>, movie: string) => currentState.push(movie);
 
     it('is immutable', () => {
       const state = List.of('Bleach', 'Fairy Tail');
