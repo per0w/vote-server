@@ -1,2 +1,3 @@
 # vote
+
 The voting application

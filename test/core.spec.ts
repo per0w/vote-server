@@ -85,44 +85,48 @@ describe('application logic', () => {
   describe('vote', () => {
     it('создаёт результат голосования для выбранной записи', () => {
       const state = Map({
-        vote: Map({
-          pair: List.of('Bleach', 'Fairy Tail'),
-        }),
-        entries: List(),
+        pair: List.of('Bleach', 'Fairy Tail'),
       });
       const nextState = vote(state, 'Bleach');
       expect(nextState).to.equal(Map({
-        vote: Map({
-          pair: List.of('Bleach', 'Fairy Tail'),
-          tally: Map({
-            Bleach: 1,
-          }),
+        pair: List.of('Bleach', 'Fairy Tail'),
+        tally: Map({
+          Bleach: 1,
         }),
-        entries: List(),
       }));
     });
 
     it('добавляет в уже имеющийся результат для выбранной записи', () => {
       const state = Map({
-        vote: Map({
-          pair: List.of('Bleach', 'Fairy Tail'),
-          tally: Map({
-            Bleach: 3,
-            'Fairy Tail': 2,
-          }),
+        pair: List.of('Bleach', 'Fairy Tail'),
+        tally: Map({
+          Bleach: 3,
+          'Fairy Tail': 2,
         }),
-        entries: List(),
       });
       const nextState = vote(state, 'Bleach');
       expect(nextState).to.equal(Map({
+        pair: List.of('Bleach', 'Fairy Tail'),
+        tally: Map({
+          Bleach: 4,
+          'Fairy Tail': 2,
+        }),
+      }));
+    });
+    it('когда остается лишь одна запись, помечает ее как победителя', () => {
+      const state = Map({
         vote: Map({
-          pair: List.of('Bleach', 'Fairy Tail'),
+          pair: List.of('Bleach', 'Faity Tail'),
           tally: Map({
             Bleach: 4,
             'Fairy Tail': 2,
           }),
         }),
         entries: List(),
+      });
+      const nextState = next(state);
+      expect(nextState).to.equal(Map({
+        winner: 'Bleach',
       }));
     });
   });
