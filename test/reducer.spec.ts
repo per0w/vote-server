@@ -27,6 +27,7 @@ describe('reducer', () => {
 
     expect(nextState).to.equal(fromJS({
       vote: {
+        round: 1,
         pair: ['Fairy Tail', 'One Piece'],
       },
       entries: [],
@@ -35,6 +36,7 @@ describe('reducer', () => {
   it('handles VOTE', () => {
     const initialState = fromJS({
       vote: {
+        round: 1,
         pair: ['Fairy Tail', 'One Piece'],
       },
       entries: [],
@@ -46,6 +48,7 @@ describe('reducer', () => {
 
     expect(nextState).to.equal(fromJS({
       vote: {
+        round: 1,
         pair: ['Fairy Tail', 'One Piece'],
         tally: { 'Fairy Tail': 1 },
       },
