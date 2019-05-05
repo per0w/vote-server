@@ -28,10 +28,15 @@ export const next = (state: Map<string, any>) => {
   });
 };
 
-export const vote = (voteState: Map<string, any>, entry: string) => voteState.updateIn(
-  ['tally', entry],
-  0,
-  tally => tally + 1,
-);
+export const vote = (voteState: Map<string, any>, entry: string) => {
+  if (voteState.get('pair').includes(entry)) {
+    return voteState.updateIn(
+      ['tally', entry],
+      0,
+      tally => tally + 1,
+    );
+  }
+  return voteState;
+};
 
 export const INITIAL_STATE = Map({});

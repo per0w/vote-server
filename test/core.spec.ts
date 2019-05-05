@@ -129,5 +129,16 @@ describe('application logic', () => {
         winner: 'Bleach',
       }));
     });
+    it('ignores the vote if for an invalid entry', () => {
+      expect(
+        vote(Map({
+          pair: List.of('Bleach', 'Faity Tail'),
+        }), 'One Piece'),
+      ).to.equal(
+        Map({
+          pair: List.of('Bleach', 'Faity Tail'),
+        }),
+      );
+    });
   });
 });
