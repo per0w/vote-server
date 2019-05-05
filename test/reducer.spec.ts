@@ -16,6 +16,7 @@ describe('reducer', () => {
 
     expect(nextState).to.equal(fromJS({
       entries: ['Fairy Tail'],
+      initialEntries: ['Fairy Tail'],
     }));
   });
   it('handles NEXT', () => {
@@ -62,6 +63,7 @@ describe('reducer', () => {
     const nextState = reducer(undefined, action);
     expect(nextState).to.equal(fromJS({
       entries: ['Bleach'],
+      initialEntries: ['Bleach'],
     }));
   });
   it('может использоваться с reduce', () => {
@@ -85,6 +87,7 @@ describe('reducer', () => {
 
     expect(finalState).to.equal(fromJS({
       winner: 'Fairy Tail',
+      initialEntries: ['Fairy Tail', 'One Piece'],
     }));
   });
 });

@@ -18,6 +18,7 @@ describe('store', () => {
 
     expect(store.getState()).to.equal(fromJS({
       entries: ['Bleach', 'Fairy Tail'],
+      initialEntries: ['Bleach', 'Fairy Tail'],
     }));
   });
 });

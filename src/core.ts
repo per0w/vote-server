@@ -3,7 +3,14 @@ import {
 } from 'immutable';
 
 
-export const setEntries = (state: Map<string, List<string>>, entries: List<string> | string[]) => state.set('entries', List(entries));
+export const setEntries = (
+  state: Map<string, List<string>>,
+  entries: List<string> | string[],
+) => {
+  const list = List(entries);
+  return state.set('entries', list)
+    .set('initialEntries', list);
+};
 
 const getWinners = (vote?: Map<string, List<string>>) => {
   if (!vote) return [];
@@ -15,7 +22,10 @@ const getWinners = (vote?: Map<string, List<string>>) => {
   return [a, b];
 };
 
-export const next = (state: Map<string, any>) => {
+export const next = (
+  state: Map<string, any>,
+  round = state.getIn(['vote', 'round'], 0),
+) => {
   const entries: List<string> = state.get('entries').concat(getWinners(state.get('vote')));
   if (entries.size === 1) {
     return state.remove('vote')
@@ -24,11 +34,23 @@ export const next = (state: Map<string, any>) => {
   }
   return state.merge({
     vote: Map({
-      round: state.getIn(['vote', 'round'], 0) + 1,
+      round: round + 1,
       pair: entries.take(2),
     }),
     entries: entries.skip(2),
   });
+};
+
+export const restart = (
+  state: Map<string, any>,
+) => {
+  const round = state.getIn(['vote', 'round'], 0);
+  return next(
+    state.set('entries', state.get('initialEntries'))
+      .remove('vote')
+      .remove('winner'),
+    round,
+  );
 };
 
 export const vote = (voteState: Map<string, any>, entry: string) => {

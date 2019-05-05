@@ -4,7 +4,7 @@ import {
 import { expect } from 'chai';
 
 import {
-  setEntries, next, vote,
+  setEntries, next, vote, restart,
 } from '../src/core';
 
 
@@ -16,6 +16,7 @@ describe('application logic', () => {
       const nextState = setEntries(state, entries);
       expect(nextState).to.equal(Map({
         entries: List.of('Bleach', 'Fairy Tail'),
+        initialEntries: List.of('Bleach', 'Fairy Tail'),
       }));
     });
 
@@ -25,6 +26,7 @@ describe('application logic', () => {
       const nextState = setEntries(state, entries);
       expect(nextState).to.equal(Map({
         entries: List.of('Bleach', 'Fairy Tail'),
+        initialEntries: List.of('Bleach', 'Fairy Tail'),
       }));
     });
   });
@@ -151,6 +153,29 @@ describe('application logic', () => {
           pair: List.of('Bleach', 'Faity Tail'),
         }),
       );
+    });
+    describe('restart', () => {
+      it('returns to initial entries and takes the first two entries under vote', () => {
+        expect(
+          restart(Map({
+            vote: Map({
+              round: 1,
+              pair: List.of('Bleach', 'One Piece'),
+            }),
+            entries: List(),
+            initialEntries: List.of('Bleach', 'Faity Tail', 'One Piece'),
+          })),
+        ).to.equal(
+          Map({
+            vote: Map({
+              round: 2,
+              pair: List.of('Bleach', 'Faity Tail'),
+            }),
+            entries: List.of('One Piece'),
+            initialEntries: List.of('Bleach', 'Faity Tail', 'One Piece'),
+          }),
+        );
+      });
     });
   });
 });
