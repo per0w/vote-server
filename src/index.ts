@@ -1,5 +1,5 @@
-import makeStore from './src/store';
-import startServer from './src/server';
+import makeStore from './store';
+import startServer from './server';
 
 export const store = makeStore();
 startServer(store);
@@ -7,7 +7,7 @@ startServer(store);
 store.dispatch({
     type: 'SET_ENTRIES',
     // eslint-disable-next-line global-require
-    entries: require('./entries.json'),
+    entries: require('../mocks/entries.json')
 });
 store.dispatch({ type: 'NEXT' });
 

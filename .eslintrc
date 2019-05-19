@@ -2,8 +2,8 @@
   "parser": "@typescript-eslint/parser",
   "extends": [
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
     "plugin:prettier/recommended",
+    "prettier/@typescript-eslint",
     "airbnb-base"
   ],
   "plugins": [
@@ -21,20 +21,22 @@
   "overrides": [{
     "files": ["src/*/*/*", "src/*/*"],
     "rules": {
-      "no-restricted-imports": [2, {
+      "no-restricted-imports": [0, {
         "patterns": ["../*"]
       }]
     }
   }],
   "rules": {
-    "@typescript-eslint/explicit-function-return-type": [0],
-    "@typescript-eslint/explicit-member-accessibility": [0],
-    "@typescript-eslint/indent": [0],
-    "@typescript-eslint/no-empty-interface": [0],
-    "@typescript-eslint/no-use-before-define": [0],
-    "@typescript-eslint/no-unused-vars": [0],
-    "@typescript-eslint/no-explicit-any": [0],
-    "arrow-parens": [0],
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "arrow-parens": "off",
+    "semi": "off",
+    "comma-dangle": "off",
     "import/first": [2, {
       "absolute-first": 0
     }],
@@ -56,21 +58,21 @@
       ],
       "newlines-between": "always"
     }],
-    "import/prefer-default-export": [0],
-    "indent": [0],
+    "import/prefer-default-export": "off",
+    "indent": "off",
     "jsx-quotes": [1, "prefer-single"],
     "max-len": [2, {
       "code": 200,
       "ignorePattern": "import \\{?\\s?.*\\s?\\}? from '.*';"
     }],
-    "no-undef": [0],
-    "no-unused-vars": [0],
-    "no-unused-expressions": [0],
-    "no-use-before-define": [0],
+    "no-undef": "off",
+    "no-unused-vars": "off",
+    "no-unused-expressions": "off",
+    "no-use-before-define": "off",
     "no-restricted-imports": [2, {
       "patterns": ["../../*"]
     }],
-    "object-curly-newline": [0],
+    "object-curly-newline": "off",
     "quotes": [1, "single"]
   }
 }

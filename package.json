@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "start": "babel-node --extensions '.ts' index.ts",
-    "dev": "nodemon --exec 'yarn lint && yarn start'",
+    "dev": "nodemon",
+    "build": "tsc",
     "lint": "eslint '**/*.ts' --quiet",
     "test": "jest -i --config=./jest.config.json",
     "format": "prettier --write '**/*.ts'",
